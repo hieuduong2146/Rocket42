@@ -1,22 +1,26 @@
 create database DepartmentManagement;
 Use DepartmentManagement ;
 create table Department(
-	DepartmentID bigint,
-    DepartmentName nvarchar(50)
+	id bigint not null auto_increment primary key,
+    department_name nvarchar(50)
     
 );
 
 create table Positon(
-	PositionID bigint,
+	position_id bigint not null auto_increment primary key,
 	PositionName nvarchar(50)
     
 );
 create table Account(
-	AccountID bigint,
-	Email nvarchar(50),
-    Username nvarchar(50),
-    Fullname nvarchar(50),
-    DeparmentID bigint,
-    PositionID bigint,
-    CreateDate date
+	account_id bigint not null auto_increment primary key,
+	email nvarchar(50) unique,
+    username nvarchar(50),
+    fullname nvarchar(50),
+    department_id bigint not null,
+    foreign key(department_id) references Department(id),
+    positionId bigint not null,
+    foreign key(positionId) references positon(position_id),
+    createDate date
 );
+
+
