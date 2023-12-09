@@ -268,3 +268,28 @@ SELECT dept_payment.dept_salary - avg_payment.dept_avg as hieu FROM dept_payment
 --------------------
  -- Assignment 5
  
+#1
+With
+sale_cte as(
+	select * from `account` where department_id = (Select id from department where department_name = 'Sale')    
+) 
+    select * from sale_cte;
+#2
+With
+AcountManager_cte as (
+	select account_id,count(group_id)  as IDgroup from groupMember group by  account_id order by IDgroup desc limit 1
+)
+select account_id,email,username from Account where account_id = (select account_id from AcountManager_cte) ;
+#3
+With
+ContentManager_cte as (
+	select question_id from question where length(content) > 45
+)
+delete from question where question_id in (select question_id from ContentManager_cte );
+#4
+With
+PositonManager_cte as (
+	select positionId,count(account_id) as soNhanVien from `account` group by positionId order by soNhanVien  desc limit 1
+)
+select * from positon where position_id in (select positionId from PositonManager_cte);
+#	
