@@ -97,6 +97,11 @@ CREATE TABLE GroupMember(
 	FOREIGN KEY (account_id) REFERENCES Account(account_id)
 );
 INSERT INTO GroupMember 
+VALUES (3, 1, CURDATE()), (4, 4, CURDATE()),
+(5, 3, CURDATE()), (6, 2, CURDATE()),
+(7, 5, CURDATE()), (7, 4, CURDATE());
+
+INSERT INTO GroupMember 
 VALUES (1, 1, CURDATE()), (1, 2, CURDATE()),
 (2, 1, CURDATE()), (2, 2, CURDATE()),
 (2, 3, CURDATE()), (2, 4, CURDATE());
@@ -279,7 +284,7 @@ With
 AcountManager_cte as (
 	select account_id,count(group_id)  as IDgroup from groupMember group by  account_id order by IDgroup desc limit 1
 )
-select account_id,email,username from Account where account_id = (select account_id from AcountManager_cte) ;
+select account_id,email,username,IDgroup from Account where account_id = (select account_id from AcountManager_cte) ;
 #3
 With
 ContentManager_cte as (
@@ -293,3 +298,89 @@ PositonManager_cte as (
 )
 select * from positon where position_id in (select positionId from PositonManager_cte);
 #	
+---------------------
+-- Solution 1
+SELECT * FROM Account WHERE id IN (
+SELECT account_id FROM GroupMember
+GROUP BY account_id
+HAVING count(*) = (SELECT max(numberOfGroup) FROM (SELECT count() as numberOfGroup FROM GroupMember GROUP BY account_id) a));
+
+-- Solution 2
+SELECT * FROM Account a INNER JOIN (SELECT account_id FROM GroupMember
+GROUP BY account_id
+HAVING count(*) = (SELECT max(numberOfGroup) FROM (SELECT count() as numberOfGroup FROM GroupMember GROUP BY account_id) a)) b
+ON a.id = b.account_id;
+
+-- Solution 3
+WITH
+maxNumberOfGroup as ( SELECT max(numberOfGroup) as numberOfGroup FROM (SELECT count(*) as numberOfGroup FROM GroupMember GROUP BY account_id) a
+),
+accIds AS ( SELECT account_id FROM GroupMember
+GROUP BY account_id
+HAVING count(*) = (SELECT numberOfGroup FROM maxNumberOfGroup)
+)
+SELECT * FROM Account INNER JOIN accIds ON Account.id = accIds.account_id;
+
+SELECT d.department_name, count(a.id) dem  FROM Account a 
+	INNER JOIN Department d
+	ON a.department_id = d.id
+	group by d.department_name
+	HAVING dem = (SELECT max(numberA) FROM (select department_id,count(account_id)  as numberA from Account group by department_id) q);
+    select * from account
+    
+-------------
+drop procedure if exists getAllAccount;
+DELIMITER $$
+CREATE PROCEDURE getAllAccount()
+BEGIN
+    SELECT * FROM Account;
+END$$
+DELIMITER ;
+call getAllAccount;
+
+drop procedure if exists getUsernameById;
+DELIMITER $$
+create procedure getUsernameById(in id bigint ,out username_out nvarchar(50))
+begin 
+	select username into username_out from account where account_id =id;
+end $$
+DELIMITER ;
+call getUsernameById(9,@username);
+select @username;
+
+
+drop procedure if exists getUsernameAndDepartment;
+DELIMITER $$
+create procedure getUsernameAndDepartment(in id bigint,out user_name_out nvarchar(50),out email_out nvarchar(50))
+begin
+	select username,email into user_name_out,email_out from account where account_id = id;
+end $$
+DELIMITER ;
+call getUsernameAndDepartment(2,@username,@email);
+select @username,@email;
+drop function if exists avg_deft;
+DELIMITER $$
+create function avg_dept(dept_name nvarchar(50)) RETURNS decimal(10,2)
+begin
+	declare avg_of_dept decimal(10,2);
+	select avg(salary) into avg_of_dept from `Account` group by deparment_id
+    having deparment_id = (Select id from deparment where department_name = dept_name );
+    return avg_of_dept;
+end$$
+DELIMITER ;
+select avg_dept('sale');
+-----------------
+
+drop procedure if exists getAccout;
+DELIMITER $$
+create procedure getAccout(in `name` nvarchar(50))
+begin
+	 Select a.account_id,a.email,a.username,a.fullname,p.PositionName 
+    from `account` as a inner join positon as p on a.positionId = p.position_id 
+    where p.PositionName = `name`;
+end$$
+DELIMITER ;
+call getAccout('Dev');
+ 
+
+
