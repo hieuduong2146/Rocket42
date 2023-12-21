@@ -16,23 +16,37 @@ drop procedure if exists getNumberAccout;
 DELIMITER $$
 create procedure getNumberAccout()
 begin
-	select group_id,count(account_id) numberAccount from groupMember group by group_id;
+	select g.grount_name,g.grounp_id,count(*) numberAccount from groupMember as gr  inner join grounp as g
+    on gr.group_id = g.grounp_id
+    group by group_id;
 end$$
 DELIMITER ;
 call getNumberAccout();
-
+----
+	drop procedure if exists getNumberAccout2;
+	DELIMITER $$
+	create procedure getNumberAccout2(in nameGr nvarchar(50))
+	begin
+		select g.grount_name,g.grounp_id,count(*) numberAccount from groupMember as gr  inner join grounp as g
+		on gr.group_id = g.grounp_id
+		where grount_name = nameGr
+		group by group_id ;
+	end$$
+	select 
+	DELIMITER ;
+	call getNumberAccout2('rocket44');
 #3
 drop procedure if exists getTypeQuestion;
 DELIMITER $$
 create procedure getTypeQuestion()
 begin
 	select tq.type_id,tq.type_name,count(tq.type_id) from typequestion as 
-	tq inner join question as q on tq.type_id = q.typeId where createDAte > '2023-12-01' And 
-	createDAte < '2023-12-31' group by tq.type_name,tq.type_id ;
+	tq inner join question as q on tq.type_id = q.typeId where month(q.createDAte) = month(curdate()) 
+    and year(q.createDAte) = year(curdate()) 
+	 group by tq.type_name,tq.type_id ;
 end$$
 DELIMITER ;
 call getTypeQuestion();
-
 #4
 
 drop procedure if exists getNumberQuestion;
@@ -68,8 +82,43 @@ begin
     where grount_name like concat('%',p_keyword,'%');
 end $$
 DELIMITER ;
-call getNameGroup('42');
+call getNameGroup('45');
 #7
+drop procedure if exists createAccountBy;
+DELIMITER $$
+create procedure createAccountBy(in full_nam_in nvarchar(60),in email_in nvarchar(60))
+begin
+	 declare posId bigint default 1;
+	declare username nvarchar(64);
+    set username = substring_index(email_in,'@',1);
+   
+
+end $$
+DELIMITER ;
+
+
+DROP PROCEDURE IF EXISTS createAccountBy;
+DELIMITER $$
+CREATE PROCEDURE createAccountBy(IN full_name_in NVARCHAR(64), IN email_in NVARCHAR(64))
+BEGIN
+    -- user1@email.com
+    -- user1
+    DECLARE deptId BIGINT DEFAULT 2;
+    DECLARE posId BIGINT DEFAULT 1;
+    DECLARE createdDate DATE DEFAULT curdate();
+    DECLARE userName NVARCHAR(64);
+    SET userName = SUBSTRING_INDEX(email_in, '@', 1); -- userName = user1
+
+    INSERT INTO Account(user_name, full_name, email, gender, salary, department_id, position_id, created_date)
+    VALUES (userName, full_name_in, email_in, 1, 1200, deptId, posId, createdDate);
+
+end$$
+
+DELIMITER ;
+
+Call createAccountBy('AAAxx BBBxx CCCxx', 'test1@email.com');
+SELECT * FROM Account WHERE full_name LIKE '%BBBxx%';
+--------------------------
 #8
 drop procedure if exists getMaxContent;
 DELIMITER $$

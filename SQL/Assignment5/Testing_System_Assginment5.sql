@@ -326,7 +326,7 @@ SELECT d.department_name, count(a.id) dem  FROM Account a
 	ON a.department_id = d.id
 	group by d.department_name
 	HAVING dem = (SELECT max(numberA) FROM (select department_id,count(account_id)  as numberA from Account group by department_id) q);
-    select * from account
+
     
 -------------
 drop procedure if exists getAllAccount;
