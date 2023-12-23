@@ -9,4 +9,6 @@ public class Account {
     Position position;
     Date createDate;
     Group[] groups;
+    Gender gender;
+    int salary;
 }

@@ -1,5 +1,5 @@
 public class Department {
-    long id;
+    long departmentId;
     String departmentName;
 
 
