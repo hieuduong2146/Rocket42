@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Exercise4 {
-    public  static  void  main(String[] args){
+    public  static  void  main(String[] args) {
         System.out.println("<<<<Question1");
         String s = "Hôm nay trời đẹp nhỉ ,bạn có thể đi chơi cùng tôi được không";
         String[] arr = s.split(" ");
@@ -19,13 +19,14 @@ public class Exercise4 {
         System.out.println("Hãy nhập vào họ và tên");
         String fullname = scanner.nextLine().trim();
         fullname = fullname.toLowerCase();
-       String[] fullName = fullname.split(" ");
-       String result = "";
-       for (String f : fullName){
-           result += String.valueOf(f.charAt(0)).toUpperCase()   + f.substring(1) + " ";
-           System.out.println(result);
+        String[] fullName = fullname.split(" ");
+        String result = "";
+        for (String f : fullName) {
+            result += String.valueOf(f.charAt(0)).toUpperCase() + f.substring(1) + " ";
+            System.out.println(result);
 
-       }
+
+
 
         }
 
@@ -42,19 +43,17 @@ public class Exercise4 {
 //            System.out.println("Ký tự thứ "+ i + " là: "+nameArr[i-1]);
 //        }
 
-
 //        System.out.println("<<<<Question6");
-//        Scanner scanner = new Scanner(System.in);
+//        Scanner scanner1 = new Scanner(System.in);
 //        System.out.println("Hãy nhập vào họ và tên");
 //        String hoVaTen = scanner.nextLine().trim();
 //        String[] fullnameArr = hoVaTen.split(" ");
 //        for (int i = 0; i <= fullnameArr.length; i++) {
-//           System.out.println("Họ là :" + fullnameArr[0]);
-//            System.out.println("Đệm là :" +  fullnameArr[i+1]);
-//           System.out.println("Tên là :" + fullnameArr[i+2]);
-//           break;
+//            System.out.println("Họ là :" + fullnameArr[0]);
+//            System.out.println("Đệm là :" + fullnameArr[i + 1]);
+//            System.out.println("Tên là :" + fullnameArr[i + 2]);
+//            break;
 
-
-
+    }
 
 }

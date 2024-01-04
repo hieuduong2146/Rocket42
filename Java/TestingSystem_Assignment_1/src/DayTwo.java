@@ -1,16 +1,20 @@
+import com.vti.entity.Account;
+import com.vti.entity.AccountDao;
+import com.vti.entity.Studen;
+
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class DayTwo {
-    public static void main(String[] args){
+
+    Studen studen = new Studen();
+    /*public static void main(String[] args){
 
         Scanner scanner = new Scanner(System.in);
         System.out.println(">>> nhập vào id của người dùng");
@@ -77,34 +81,34 @@ public class DayTwo {
         for(int i = 0 ; i < arr.length; i++){
             System.out.println(arr[i]);
             if(i == 0){
-                break;
-            }
-        }
-        char[] chars = account.fullName.toCharArray();
-//        for(char c : chars){
-//            if(c == ' '){
-//                continue;
-//            }
-//           System.out.println(c);
-//        }
-        int i = 0;
-        int size = chars.length;
-//        while (i < size){
-//            System.out.println(chars[i]);
-//            i++;
+                break;*/
+
+
+//        char[] chars = account.fullName.toCharArray();
+////        for(char c : chars){
+////            if(c == ' '){
+////                continue;
+////            }
+////           System.out.println(c);
+////        }
+//        int i = 0;
+//        int size = chars.length;
+////        while (i < size){
+////            System.out.println(chars[i]);
+////            i++;
+////
+////        }
+//        int j = 0;
 //
-//        }
-        int j = 0;
-
-        do {
-            System.out.println(chars[j]);
-            j++;
-        }while (j < size);
+//        do {
+//            System.out.println(chars[j]);
+//            j++;
+//        }while (j < size);
 
 
 
 
 
-    }
+
 
 }
