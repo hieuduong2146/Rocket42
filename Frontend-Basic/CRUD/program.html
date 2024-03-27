@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>CRUD Demo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="program.css">
+    <link rel="stylesheet" href="navi.css">
+    <link rel="stylesheet" href="table.css">
+</head>
+
+<body>
+    <div class="header">
+
+    </div>
+
+    <div class="main">
+
+    </div>
+
+    <div class="footer">
+
+    </div>
+
+    <script>
+        $(function() {
+            $(".header").load("header.html");
+            $(".main").load("home.html");
+            $(".footer").load("footer.html");
+        });
+
+        function fillEmployeeTotable(employees) {
+            // setTimeout(function() {
+            //     employees.forEach(function(employee) {
+            //         $('tbody').append(
+            //             '<tr>' +
+            //             '<td>' + employee.name + '</td>' +
+            //             '<td>' + employee.department + '</td>' +
+            //             '<td>' + employee.phone + '</td>' +
+            //             '<td>' +
+            //             '<a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>' +
+            //             '<a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>' +
+            //             '</td>' +
+            //             '</tr>'
+            //         )
+            //     });
+            // }, 1000);
+             setTimeout(function() {
+                employees.forEach(employee => {
+                console.log('add list')
+                $('tbody').append(
+                     '<tr>' +                      
+                        '<td>' + employee.name + '</td>' +
+                        '<td>' + employee.department + '</td>' +
+                        '<td>' + employee.phone + '</td>' +
+                        '<td>' +
+                        '<a class="edit" title="Edit" data-toggle="tooltip" onclick ="openUpdateModal(' + employee.id + ')"><i class="material-icons">&#xE254;</i></a>' +
+                        '<a class="delete" title="Delete" data-toggle="tooltip" onclick ="del(' + employee.id + ')"><i class="material-icons">&#xE872;</i></a>' +
+                        '</td>' +
+                    '</tr>'
+                )
+            });
+             },1000)
+           
+        }
+
+        function initEmployees() {
+            employees = [];
+            employees.push(new Employee(1,'John Doe', 'Administration', '(171) 555-2222'));
+            employees.push(new Employee(2,'Peter Parker', 'Customer Service', '(313) 555-5735'));
+            employees.push(new Employee(3,'Hong Cong', 'Customer Service', '(313) 555-5735'));
+            return employees;
+        }
+        function addModal() {
+         $('#myModal').modal('show');
+        }
+
+        function hideModal() {
+            $('#myModal').modal('hide');
+        }
+        // thêm 
+        function addEmployees(){
+            var id = document.getElementById("id").value;
+            var name = document.getElementById("name").value;
+            var department = document.getElementById("department").value;
+            var phone = document.getElementById("phone").value;
+            employees.push(new Employee(name,department,phone))
+            console.log(employees);
+            hideModal()
+            fillEmployeeTotable(employees)
+        }
+        // xóa
+        function deleteEmployees(){
+           
+        }
+ 
+         //  sửa
+         function editEmployees(){
+           
+         }
+
+        function Employee(id,name, department, phone) {
+            this.id = id;
+            this.name = name;
+            this.department = department;
+            this.phone = phone;
+        }
+
+        function clickHomeButton() {
+            $(".main").load("home.html");
+        }
+
+        function clickViewListEmployeeButton() {
+            $(".main").load("listemployees.html");
+            employees = initEmployees();
+            fillEmployeeTotable(employees);
+        }
+
+        function openUpdateModal(id) {
+
+        // get index from employee's id
+        var index = employees.findIndex(x => x.id == id);
+
+        // fill data
+        document.getElementById("id").value = employees[index].id;
+        document.getElementById("name").value = employees[index].name;
+        document.getElementById("department").value = employees[index].department;
+        document.getElementById("phone").value = employees[index].phone;
+
+        openModal();
+        }
+        function updateEmployee() {
+            var id = document.getElementById("id").value;
+            var name = document.getElementById("name").value;
+            var department = document.getElementById("department").value;
+            var phone = document.getElementById("phone").value;
+
+            // TODO validate
+            // then fail validate ==> return;
+
+            // get index from employee's id
+            var index = employees.findIndex(x => x.id == id);
+
+            // update employee
+            employees[index].name = name;
+            employees[index].department = department;
+            employees[index].phone = phone;
+
+            hideModal();
+            showSuccessAlert();
+            buildTable();
+        }
+        function save() {
+        var id = document.getElementById("id").value;
+
+        if (id == null || id == "") {
+            addEmployee();
+        } else {
+            updateEmployee();
+        }
+        }
+    </script>
+</body>
+
+</html>

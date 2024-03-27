@@ -5,24 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fe4f24eb-3401-4a4b-96ee-c7fd2209d09c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../assignment6/abc.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../assignment6/src/ChildClass.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../assignment6/src/Color.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../assignment6/src/IParent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../assignment6/src/MyException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../assignment6/src/TryCatchFinally.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../assignment6/src/util/Deparment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../assignment6/src/util/Program02.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../assignment6/src/util/ScannerUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lesson-07/src/Dog.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lesson-07/src/Ex1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lesson-07/src/FinalDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lesson-07/src/MyMath.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lesson-07/src/PrimaryStuden.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lesson-07/src/Program01.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lesson-07/src/SecondStuden.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lesson-07/src/StaticDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../lesson-07/src/Studen.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Lessont-8/src/list/Ex01.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Lessont-8/src/list/ListDemo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Lessont-8/src/list/Program02.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Lessont-8/src/list/Studen.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lesson-07/src/FileDemo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lesson-07/src/IOSTreamDemo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lesson-07/src/util/FileManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

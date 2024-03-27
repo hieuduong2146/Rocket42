@@ -1,0 +1,10 @@
+eclipse.preferences.version=1
+encoding//src/main/java/vn/edu/vinaenter/controller/index/index.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/classes/valid/messages.properties=UTF-8
+encoding//src/main/webapp/WEB-INF/config/template.xml=UTF-8
+encoding//src/main/webapp/WEB-INF/templates/admin/template.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/templates/taglib.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/admin/add.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/admin/cat/add.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/admin/news/search.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/auth/login.jsp=UTF-8

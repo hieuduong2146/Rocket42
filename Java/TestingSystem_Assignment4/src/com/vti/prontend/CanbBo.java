@@ -25,6 +25,9 @@ public class CanbBo {
                 ", address='" + address + '\'' +
                 '}';
     }
+    public void talk(){
+        System.out.println("a");
+    }
 
     public int getTuoi() {
         return tuoi;
